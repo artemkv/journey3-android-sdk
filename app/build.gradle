@@ -6,7 +6,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.artemkv.journey3.app"
+        applicationId "net.artemkv.journey3.app"
         minSdk 26
         targetSdk 32
         versionCode 1

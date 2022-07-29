@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = 'com.artemkv.journey3'
+    namespace = 'net.artemkv.journey3'
 
     compileSdk 32
 
@@ -43,7 +43,7 @@ android {
 publishing {
     publications {
         release(MavenPublication) {
-            groupId = 'com.artemkv'
+            groupId = 'net.artemkv'
             artifactId = 'journey3'
             version = '1.0'
 
