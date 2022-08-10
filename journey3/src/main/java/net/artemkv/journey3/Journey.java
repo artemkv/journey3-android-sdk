@@ -36,7 +36,7 @@ public final class Journey {
         this.isRelease = isRelease;
     }
 
-    public void startSession(Context context) {
+    public synchronized void startSession(Context context) {
         try {
             // start new session
             SessionHeader header = new SessionHeader(
@@ -101,19 +101,19 @@ public final class Journey {
         }
     }
 
-    public void reportEvent(String eventName, Context context) {
+    public synchronized void reportEvent(String eventName, Context context) {
         reportEvent(eventName, false, false, false, context);
     }
 
-    public void reportEvent(String eventName, boolean isCollapsible, Context context) {
+    public synchronized void reportEvent(String eventName, boolean isCollapsible, Context context) {
         reportEvent(eventName, isCollapsible, false, false, context);
     }
 
-    public void reportError(String eventName, Context context) {
+    public synchronized void reportError(String eventName, Context context) {
         reportEvent(eventName, false, true, false, context);
     }
 
-    public void reportCrash(String eventName, Context context) {
+    public synchronized void reportCrash(String eventName, Context context) {
         reportEvent(eventName, false, true, true, context);
     }
 
@@ -157,7 +157,7 @@ public final class Journey {
         }
     }
 
-    public void reportStageTransition(int stage, String stageName, Context context) {
+    public synchronized void reportStageTransition(int stage, String stageName, Context context) {
         if (currentSession == null) {
             Log.i("net.artemkv.journey3", "Cannot update session. Journey have not been initialized.");
             return;
