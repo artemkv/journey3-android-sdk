@@ -49,7 +49,11 @@ public final class Journey {
             final Session session = sessionStorage.getSession(context);
             if (session != null) {
                 Log.i("net.artemkv.journey3", "Report the end of the previous session");
-                Connector.reportSession(session);
+                try {
+                    Connector.reportSession(session);
+                } catch (Exception e) {
+                    Log.w("net.artemkv.journey3", "Failed to report the end of the previous session: " + e.getMessage());
+                }
             }
 
             // update current session based on the previous one
@@ -172,6 +176,9 @@ public final class Journey {
             if (currentSession.getNewStage().getStage() < stage) {
                 currentSession.setNewStage(new Stage(stage, stageName));
             }
+
+            // update endtime
+            currentSession.setEnd(Instant.now());
 
             // save session
             sessionStorage.saveSession(currentSession, context);
